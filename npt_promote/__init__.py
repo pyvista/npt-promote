@@ -1,0 +1,1 @@
+from .mypy_plugin import plugin

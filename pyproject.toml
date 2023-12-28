@@ -1,0 +1,17 @@
+[project]
+
+name = "npt-promote"
+version = "0.1"
+dependencies = [
+  "mypy", "numpy>=1.21"
+]
+keywords = ["mypy", "typing", "numpy"]
+license = { file = "LICENSE" }
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://github.com/user27182/npt-promote"
+
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
