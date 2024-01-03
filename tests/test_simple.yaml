@@ -1,0 +1,9 @@
+- case: simple_test
+  parametrized:
+    - typ: float
+    - typ: int
+  mypy_config: |
+    plugins = npt_promote
+  main: |
+    from numpy.typing import NDArray
+    x: NDArray[{{ typ }}]

@@ -5,10 +5,10 @@ The main use case for this plugin is to enable generic use of `int` and `float`
 type annotations with NumPy arrays, e.g.
 
 ``` python
+import numpy as np
 import numpy.typing as npt
 
-def foo(x: npt.NDArray[float]) -> npt.NDArray[float]:
-    ...
+x: npt.NDArray[float] = np.array((42.0))
 ```
 
 ## Installation
@@ -19,7 +19,6 @@ in `pyproject.toml`:
 ``` toml
 [project.optional-dependencies]
 dev = ["mypy", "npt-promote"]
-]
 ```
 
 To use the plugin with `mypy` as a `pre-commit` hook, add the following to `.pre-commit-config.yaml`:
@@ -43,4 +42,8 @@ plugins = [
 ]
 ```
 
+To run the tests, execute:
+```
+pytest --mypy-only-local-stub
+```
 

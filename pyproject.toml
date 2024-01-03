@@ -12,6 +12,9 @@ readme = "README.md"
 [project.urls]
 Homepage = "https://github.com/user27182/npt-promote"
 
+[project.optional-dependencies]
+dev = ["pytest", "pytest-mypy-plugins"]
+
 [build-system]
 requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
