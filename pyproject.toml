@@ -10,7 +10,7 @@ license = { file = "LICENSE" }
 readme = "README.md"
 
 [project.urls]
-Homepage = "https://github.com/user27182/npt-promote"
+Homepage = "https://github.com/pyvista/npt-promote"
 
 [project.optional-dependencies]
 dev = ["pytest", "pytest-mypy-plugins"]
