@@ -1,4 +1,4 @@
-name: Unit Testing and Deployment
+name: Unit Testing
 
 on:
   pull_request:
