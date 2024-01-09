@@ -1,10 +1,10 @@
-from typing import Any, Callable, Final, Optional, Type
+from typing import Any, Callable, Final, List, Optional, Type
 
 import numpy as np
 from mypy.plugin import ClassDefContext, Plugin
 from mypy.types import Instance
 
-__all__: list[str] = []
+__all__: List[str] = []
 
 
 def _get_type_fullname(typ: Any) -> str:
@@ -67,6 +67,6 @@ class _NptPromotePlugin(Plugin):
         return None
 
 
-def plugin(version: str) -> Type:
+def plugin(version: str) -> Type[_NptPromotePlugin]:
     """Entry-point for mypy."""
     return _NptPromotePlugin
