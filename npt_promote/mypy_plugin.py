@@ -67,6 +67,6 @@ class _NptPromotePlugin(Plugin):
         return None
 
 
-def plugin(version: str) -> Type[_NptPromotePlugin]:
+def plugin(version: str) -> Type:
     """Entry-point for mypy."""
     return _NptPromotePlugin
