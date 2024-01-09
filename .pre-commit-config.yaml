@@ -43,7 +43,8 @@ repos:
   hooks:
   - id: check-merge-conflict
   - id: debug-statements
-  - id: requirements-txt-fixer
+  - id: no-commit-to-branch
+    args: [ --branch, main ]
   - id: trailing-whitespace
   - id: check-docstring-first
   - id: end-of-file-fixer
