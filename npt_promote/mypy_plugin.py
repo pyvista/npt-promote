@@ -11,7 +11,6 @@ def _get_type_fullname(typ: Any) -> str:
     return f"{typ.__module__}.{typ.__qualname__}"
 
 
-x = 1
 NUMPY_SIGNED_INTEGER_TYPE_FULLNAME: Final = _get_type_fullname(np.signedinteger)
 NUMPY_FLOATING_TYPE_FULLNAME: Final = _get_type_fullname(np.floating)
 # TODO: Add type promotion for `bool` and `numpy.bool_`(only if/when mypy complains?)

@@ -58,12 +58,12 @@ dependency, e.g. add the following to `.pre-commit-config.yaml`:
 
 ## Testing
 
-First, install `npt-promote` with:
+First, install `npt-promote` with dev requirements:
 ``` bash
 python -m pip install npt-promote[dev]
 ```
 
 To run the tests, execute:
 ``` bash
-pytest --mypy-only-local-stub
+pytest
 ```

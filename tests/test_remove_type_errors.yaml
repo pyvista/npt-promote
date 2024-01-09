@@ -1,5 +1,5 @@
 - case: plugin_removes_type_errors
-  
+
   parametrized:
     # test error without plugin
     - in_type: float
@@ -8,14 +8,14 @@
       out_type: 'numpy.ndarray[Any, numpy.dtype[Any]]'
       out_annotation: 'error: Type argument "float" of "NDArray" must be a subtype of "generic"  [type-var]'
       out_expression: 'error: Incompatible types in assignment (expression has type "ndarray[Any, dtype[floating[Any]]]", variable has type "ndarray[Any, dtype[float]]")  [assignment]'
-    
+
     - in_type: int
       in_value: 42
       plugin: numpy.typing.mypy_plugin
       out_type: 'numpy.ndarray[Any, numpy.dtype[Any]]'
       out_annotation: 'error: Type argument "int" of "NDArray" must be a subtype of "generic"  [type-var]'
       out_expression: 'error: Incompatible types in assignment (expression has type "ndarray[Any, dtype[signedinteger[Any]]]", variable has type "ndarray[Any, dtype[int]]")  [assignment]'
-      
+
     # test no error with plugin
     - in_type: float
       in_value: 42.0
@@ -23,7 +23,7 @@
       out_type: 'numpy.ndarray[Any, numpy.dtype[builtins.float]]'
       out_annotation: ''
       out_expression: ''
-      
+
     - in_type: int
       in_value: 42
       plugin: npt_promote
@@ -37,7 +37,7 @@
   main: |
     from numpy.typing import NDArray
     import numpy
-    
+
     x = numpy.array({{ in_value }}, dtype={{ in_type }})
     reveal_type(x)
     y: NDArray[{{ in_type }}] = x

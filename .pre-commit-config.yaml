@@ -29,15 +29,6 @@ repos:
   rev: v2.2.6
   hooks:
   - id: codespell
-    additional_dependencies: [
-      "tomli"
-    ]
-
-- repo: https://github.com/numpy/numpydoc
-  rev: v1.6.0
-  hooks:
-  - id: numpydoc-validation
-    files: ^pyvista/
 
 - repo: https://github.com/pre-commit/mirrors-mypy
   rev: v1.8.0
@@ -63,9 +54,3 @@ repos:
   rev: 0.27.3
   hooks:
     - id: check-github-workflows
-
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.1.9
-  hooks:
-    - id: ruff
-      args: [ --fix ]

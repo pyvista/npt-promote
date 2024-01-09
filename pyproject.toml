@@ -18,3 +18,6 @@ dev = ["pytest", "pytest-mypy-plugins"]
 [build-system]
 requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+addopts = '--mypy-only-local-stub'
