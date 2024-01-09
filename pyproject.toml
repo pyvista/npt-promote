@@ -1,16 +1,30 @@
 [project]
-
 name = "npt-promote"
 version = "0.1"
 dependencies = [
   "mypy", "numpy>=1.21"
 ]
+requires-python = '>=3.8'
 keywords = ["mypy", "typing", "numpy"]
-license = { file = "LICENSE" }
+license = {text = 'MIT'}
 readme = "README.md"
 
 [project.urls]
 Homepage = "https://github.com/pyvista/npt-promote"
+
+classifiers = [
+    'Intended Audience :: Science/Research',
+    'Topic :: Scientific/Engineering :: Information Analysis',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX',
+    'Operating System :: MacOS',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+]
 
 [project.optional-dependencies]
 dev = ["pytest", "pytest-mypy-plugins"]
