@@ -32,12 +32,19 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
+          cache-dependency-path: pyproject.toml
 
       - name: Install npt-promote
         run: pip install ".[dev]"
 
       - name: Run Tests
         run: pytest
+
+      - name: Software Report
+        if: always()
+        run: |
+          which python
+          pip list
 
   Linux:
     name: Linux Unit Testing
@@ -49,18 +56,46 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
 
-      - name: Install npt-promote
+      - name: Build wheel and install npt-promote
+        run: |
+          pip install build
+          python -m build --wheel
+          pip install dist/npt_promote*.whl
+
+      - name: Install Testing Requirements
         run: pip install ".[dev]"
 
       - name: Run Tests
-        run: pytest
+        run: python -m pytest
+
+      - name: Software Report
+        if: always()
+        run: |
+          which python
+          pip list
+
+      - name: Check package
+        run: |
+          pip install build twine
+          python -m build
+          twine check --strict dist/*
+
+      - name: Upload to PyPi
+        if: matrix.python-version == '3.9' && startsWith(github.ref, 'refs/tags/v')
+        run: |
+          twine upload --skip-existing dist/npt_promote*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+          TWINE_REPOSITORY_URL: "https://upload.pypi.org/legacy/"
 
   windows:
     name: Windows Unit Testing
@@ -77,9 +112,16 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
+          cache-dependency-path: pyproject.toml
 
       - name: Install npt-promote
         run: pip install ".[dev]"
 
       - name: Run Tests
         run: pytest
+
+      - name: Software Report
+        if: always()
+        run: |
+          which python
+          pip list
