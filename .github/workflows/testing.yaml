@@ -68,7 +68,7 @@ jobs:
         run: |
           pip install build
           python -m build --wheel
-          pip install dist/npt-promote*.whl
+          pip install dist/npt_promote*.whl
 
       - name: Install Testing Requirements
         run: pip install ".[dev]"
