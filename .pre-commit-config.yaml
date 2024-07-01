@@ -6,7 +6,7 @@ ci:
 
 repos:
 - repo: https://github.com/psf/black
-  rev: 23.12.1
+  rev: 24.4.2
   hooks:
   - id: black
 
@@ -16,7 +16,7 @@ repos:
   - id: isort
 
 - repo: https://github.com/PyCQA/flake8
-  rev: 6.1.0
+  rev: 7.1.0
   hooks:
   - id: flake8
     additional_dependencies: [
@@ -26,12 +26,12 @@ repos:
     ]
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.6
+  rev: v2.3.0
   hooks:
   - id: codespell
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.8.0
+  rev: v1.10.1
   hooks:
   - id: mypy
     additional_dependencies: [
@@ -39,7 +39,7 @@ repos:
     ]
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.5.0
+  rev: v4.6.0
   hooks:
   - id: check-merge-conflict
   - id: debug-statements
@@ -52,6 +52,6 @@ repos:
 
 # this validates our github workflow files
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 0.27.3
+  rev: 0.28.6
   hooks:
     - id: check-github-workflows
