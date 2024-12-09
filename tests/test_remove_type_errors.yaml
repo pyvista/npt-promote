@@ -5,29 +5,29 @@
     - in_type: float
       in_value: 42.0
       plugin: numpy.typing.mypy_plugin
-      out_type: 'numpy.ndarray[Any, numpy.dtype[Any]]'
-      out_annotation: 'error: Type argument "float" of "NDArray" must be a subtype of "generic"  [type-var]'
-      out_expression: 'error: Incompatible types in assignment (expression has type "ndarray[Any, dtype[floating[Any]]]", variable has type "ndarray[Any, dtype[float]]")  [assignment]'
+      out_type: 'numpy.ndarray[builtins.tuple[builtins.int, ...], numpy.dtype[Any]]'
+      out_annotation: 'error: Type argument "float" of "NDArray" must be a subtype of "generic[Any]"  [type-var]'
+      out_expression: 'error: Incompatible types in assignment (expression has type "ndarray[tuple[int, ...], dtype[floating[Any]]]", variable has type "ndarray[tuple[int, ...], dtype[float]]")  [assignment]'
 
     - in_type: int
       in_value: 42
       plugin: numpy.typing.mypy_plugin
-      out_type: 'numpy.ndarray[Any, numpy.dtype[Any]]'
-      out_annotation: 'error: Type argument "int" of "NDArray" must be a subtype of "generic"  [type-var]'
-      out_expression: 'error: Incompatible types in assignment (expression has type "ndarray[Any, dtype[signedinteger[Any]]]", variable has type "ndarray[Any, dtype[int]]")  [assignment]'
+      out_type: 'numpy.ndarray[builtins.tuple[builtins.int, ...], numpy.dtype[Any]]'
+      out_annotation: 'error: Type argument "int" of "NDArray" must be a subtype of "generic[Any]"  [type-var]'
+      out_expression: 'error: Incompatible types in assignment (expression has type "ndarray[tuple[int, ...], dtype[signedinteger[Any]]]", variable has type "ndarray[tuple[int, ...], dtype[int]]")  [assignment]'
 
     # test no error with plugin
     - in_type: float
       in_value: 42.0
       plugin: npt_promote
-      out_type: 'numpy.ndarray[Any, numpy.dtype[builtins.float]]'
+      out_type: 'numpy.ndarray[builtins.tuple[builtins.int, ...], numpy.dtype[builtins.float]]'
       out_annotation: ''
       out_expression: ''
 
     - in_type: int
       in_value: 42
       plugin: npt_promote
-      out_type: 'numpy.ndarray[Any, numpy.dtype[builtins.int]]'
+      out_type: 'numpy.ndarray[builtins.tuple[builtins.int, ...], numpy.dtype[builtins.int]]'
       out_annotation: ''
       out_expression: ''
 
