@@ -1,7 +1,7 @@
 # npt-promote
 Mypy plugin to add type promotions between NumPy and builtin data types.
 
-The main use case for this plugin is to enable generic use of `int` and `float`
+The main use case for this plugin is to enable generic use of `bool`, `int` and `float`
 type annotations with NumPy arrays, e.g.
 
 ``` python
