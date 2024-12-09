@@ -13,8 +13,24 @@ def _get_type_fullname(typ: Any) -> str:
 
 NUMPY_SIGNED_INTEGER_TYPE_FULLNAME: Final = _get_type_fullname(np.signedinteger)
 NUMPY_FLOATING_TYPE_FULLNAME: Final = _get_type_fullname(np.floating)
-# TODO: Add type promotion for `bool` and `numpy.bool_`(only if/when mypy complains?)
-# NUMPY_BOOL_TYPE_FULLNAME: Final = _get_type_fullname(np.bool_)
+NUMPY_BOOL_TYPE_FULLNAME: Final = _get_type_fullname(np.bool_)
+
+
+def _promote_bool_callback(ctx: ClassDefContext) -> None:
+    """Add two-way type promotion between `bool` and `numpy.bool_`.
+
+    This promotion allows for use of NumPy typing annotations with `bool`,
+    e.g. npt.NDArray[bool].
+
+    See mypy.semanal_classprop.add_type_promotion for a similar promotion
+    between `int` and `i64` types.
+    """
+    assert ctx.cls.fullname == NUMPY_BOOL_TYPE_FULLNAME
+    numpy_bool: Instance = ctx.api.named_type(NUMPY_BOOL_TYPE_FULLNAME)
+    builtin_bool: Instance = ctx.api.named_type("builtins.bool")
+
+    builtin_bool.type._promote.append(numpy_bool)
+    numpy_bool.type.alt_promote = builtin_bool
 
 
 def _promote_int_callback(ctx: ClassDefContext) -> None:
@@ -64,6 +80,8 @@ class _NptPromotePlugin(Plugin):
             return _promote_float_callback
         elif fullname == NUMPY_SIGNED_INTEGER_TYPE_FULLNAME:
             return _promote_int_callback
+        elif fullname == NUMPY_BOOL_TYPE_FULLNAME:
+            return _promote_bool_callback
         return None
 
 
