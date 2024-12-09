@@ -27,7 +27,7 @@ classifiers = [
 Homepage = "https://github.com/pyvista/npt-promote"
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-mypy-plugins"]
+dev = ["pytest", "pytest-mypy-plugins", "pre-commit"]
 
 [build-system]
 requires = ["setuptools>=61.0.0", "wheel"]

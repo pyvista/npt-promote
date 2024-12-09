@@ -1,6 +1,0 @@
-[flake8]
-# match black's line length
-max-line-length=88
-ignore =
-    # ignore quotes (black already enforces double quotes)
-    Q0,
