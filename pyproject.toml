@@ -1,6 +1,6 @@
 [project]
 name = "npt-promote"
-version = "0.3dev0"
+version = "0.2rc1"
 description = "Mypy plugin to add type promotions between NumPy and builtin data types."
 dependencies = [
   "mypy", "numpy>=1.21"
