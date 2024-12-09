@@ -5,38 +5,10 @@ ci:
     autoupdate_schedule: quarterly
 
 repos:
-- repo: https://github.com/psf/black
-  rev: 24.10.0
-  hooks:
-  - id: black
-
-- repo: https://github.com/pycqa/isort
-  rev: 5.13.2
-  hooks:
-  - id: isort
-
-- repo: https://github.com/PyCQA/flake8
-  rev: 7.1.1
-  hooks:
-  - id: flake8
-    additional_dependencies: [
-      "flake8-black==0.3.6",
-      "flake8-isort==6.0.0",
-      "flake8-quotes==3.3.2",
-    ]
-
 - repo: https://github.com/codespell-project/codespell
   rev: v2.3.0
   hooks:
   - id: codespell
-
-- repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.11.2
-  hooks:
-  - id: mypy
-    additional_dependencies: [
-    "numpy",
-    ]
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v5.0.0
@@ -50,8 +22,9 @@ repos:
   - id: end-of-file-fixer
   - id: mixed-line-ending
 
-# this validates our github workflow files
-- repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 0.29.3
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.8.1
   hooks:
-    - id: check-github-workflows
+    - id: ruff
+      args: [--fix, --show-fixes]
+    - id: ruff-format
