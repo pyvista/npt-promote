@@ -88,14 +88,33 @@ jobs:
           python -m build
           twine check --strict dist/*
 
-      - name: Upload to PyPi
-        if: matrix.python-version == '3.9' && startsWith(github.ref, 'refs/tags/v')
+  pypi:
+    name: Publish to PyPI
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: [Linux, macOS, windows]
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/npt-promote
+    permissions:
+      id-token: write # this permission is mandatory for trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build package
         run: |
-          twine upload --skip-existing dist/npt_promote*
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-          TWINE_REPOSITORY_URL: "https://upload.pypi.org/legacy/"
+          pip install build
+          python -m build
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
 
   windows:
     name: Windows Unit Testing
