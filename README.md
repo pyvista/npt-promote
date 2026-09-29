@@ -1,4 +1,7 @@
 # npt-promote
+
+ARCHIVAL NOTE: This plugin enables unsound typing. It is no longer used by PyVista.
+
 Mypy plugin to add type promotions between NumPy and builtin data types.
 
 The main use case for this plugin is to enable generic use of `bool`, `int` and `float`
